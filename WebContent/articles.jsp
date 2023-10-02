@@ -40,11 +40,18 @@
                           <th>Articles</th>
                           <th>  Action</th>
                         </tr>
-                        <tr>
-                          <td>1.</td>
-                          <td>Article 1</td>
-                          <td>Edit delete</td>
-                        </tr>
+                <c:forEach var="article" items="${articles}" varStatus="loop">
+				    <tr>
+				        <td>${loop.index + 1}</td>
+				        <td>${article.article}</td>
+				        <td>
+				            <a href="articles?action=edit&id=${article.id}">Modifier</a>
+				            <a href="articles?action=delete&id=${article.id}">Supprimer</a>
+				        </td>
+				    </tr>
+				</c:forEach>
+                
+          
       
                       </table>
                     </div>

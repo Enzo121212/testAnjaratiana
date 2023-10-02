@@ -81,7 +81,7 @@ public class ArticleServlet extends HttpServlet {
             }
 	        
 	        request.setAttribute("articles", articles);
-	        request.getRequestDispatcher("/WebContent/View/article-list.jsp").forward(request, response);
+	        request.getRequestDispatcher("article-list.jsp").forward(request, response);
 	    }
 
 	    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
@@ -89,7 +89,7 @@ public class ArticleServlet extends HttpServlet {
 	        Long id = Long.parseLong(request.getParameter("id"));
 	        Article existingArticle = articleDAO.getArticleById(id);
 	        request.setAttribute("article", existingArticle);
-	        request.getRequestDispatcher("/WebContent/View/article-list.jsp").forward(request, response);
+	        request.getRequestDispatcher("article-list.jsp").forward(request, response);
 	    }
 
 	    private void createArticle(HttpServletRequest request, HttpServletResponse response)
