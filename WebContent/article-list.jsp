@@ -34,7 +34,7 @@
         <input type="hidden" name="action" value="${article.id == null ? 'create' : 'update'}">
         <input type="hidden" name="id" value="${article.id}">
         Nom de l'Article: <input type="text" name="articleName" value="${article.article}">
-        <input type="submit" value="${article.id == null ? 'Ajouter' : 'Modifier'}">
+        <input type="submit" value="${article.id == null ? 'Ajouter' : 'Modifier'}" >
     </form>
 </body>
 </html>

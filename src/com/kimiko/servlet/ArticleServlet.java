@@ -57,7 +57,7 @@ public class ArticleServlet extends HttpServlet {
 	        if (action == null) {
 	            action = "list";
 	        }
-
+	        System.out.println( "Action"+ action);
 	        switch (action) {
 	            case "create":
 	                createArticle(request, response);
@@ -76,12 +76,12 @@ public class ArticleServlet extends HttpServlet {
 	        List<Article> articles = articleDAO.getAllArticles();
 	       
 	        	
-	        for (Article T : articles) {
+	       /* for (Article T : articles) {
                 System.out.println( T.getArticle() );
-            }
+            }*/
 	        
 	        request.setAttribute("articles", articles);
-	        request.getRequestDispatcher("article-list.jsp").forward(request, response);
+	        request.getRequestDispatcher("articles.jsp").forward(request, response);
 	    }
 
 	    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
@@ -89,11 +89,12 @@ public class ArticleServlet extends HttpServlet {
 	        Long id = Long.parseLong(request.getParameter("id"));
 	        Article existingArticle = articleDAO.getArticleById(id);
 	        request.setAttribute("article", existingArticle);
-	        request.getRequestDispatcher("article-list.jsp").forward(request, response);
+	        request.getRequestDispatcher("articles.jsp").forward(request, response);
 	    }
 
 	    private void createArticle(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
+	    	 System.out.println( "---------------------------CREATE-------------------------");
 	        String articleName = request.getParameter("articleName");
 	        Article newArticle = new Article(articleName);
 	        articleDAO.saveArticle(newArticle);
@@ -106,6 +107,7 @@ public class ArticleServlet extends HttpServlet {
 	        String articleName = request.getParameter("articleName");
 	        Article existingArticle = articleDAO.getArticleById(id);
 	        existingArticle.setArticle(articleName);
+	        System.out.print("New "+articleName );
 	        articleDAO.updateArticle(existingArticle);
 	        response.sendRedirect("articles?action=list");
 	    }
