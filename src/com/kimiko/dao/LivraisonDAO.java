@@ -1,9 +1,14 @@
 package com.kimiko.dao;
 
-import com.kimiko.beans.Livraison;
-import com.kimiko.util.EntityManagerUtil;
-import javax.persistence.EntityManager;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import com.kimiko.beans.Article;
+import com.kimiko.beans.Clients;
+import com.kimiko.beans.Livraison;
+import com.kimiko.beans.Livreur;
+import com.kimiko.util.EntityManagerUtil;
 
 
 public class LivraisonDAO {
@@ -25,35 +30,23 @@ public class LivraisonDAO {
         }
     }
 
-    public Livraison getLivraisonById(int id) {
-        return entityManager.find(Livraison.class, id);
-    }
-
     public List<Livraison> getAllLivraisons() {
         return entityManager.createQuery("FROM Livraison", Livraison.class).getResultList();
     }
 
-    public void updateLivraison(Livraison livraison) {
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(livraison);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-        }
+    public List<Article> getAllArticles() {
+        return entityManager.createQuery("FROM Article", Article.class).getResultList();
     }
 
-    public void deleteLivraison(Livraison livraison) {
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.remove(livraison);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-        }
+    public List<Clients> getAllClients() {
+        return entityManager.createQuery("FROM Clients", Clients.class).getResultList();
     }
+
+        public List<Livreur> getAllLivreurs() {
+        return entityManager.createQuery("FROM Livreur", Livreur.class).getResultList();
+    }
+
+
 
     public void close() {
         EntityManagerUtil.closeEntityManager();

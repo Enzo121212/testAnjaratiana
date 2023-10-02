@@ -19,49 +19,47 @@
                         
                         <div class="form-group">
                           <label for="client">Select</label>
-                          <select class="form-control" id="client">
-                            <option>client 1</option>
-                            <option>client 2</option>
+                          <select class="form-control" id="client" name="idClient">
+                             <c:forEach var="index" items="${clients}" >
+                             	<option value="${index.id}">${index.nom}  ${index.prenom}</option>
+						    </c:forEach>
                           </select>
                         </div>
 
                         <div class="form-group">
-                          <label for="article"> Sélectionnez un ou plusieurs articles</label>
-                          <select multiple class="form-control" id="article">
-                            <option>article 1</option>
-                            <option>article 2</option>
-                            <option>article 3</option>
-                            <option>article 4</option>
-                            <option>article 5</option>
+                          <label for="article"> Sï¿½lectionnez un ou plusieurs articles</label>
+                          <select multiple class="form-control" id="article" name="idCommande" required>
+                            <c:forEach var="index" items="${articles}" >
+                             	<option value="${index.id}">${index.article}</option>
+						    </c:forEach>
+						    
                           </select>
                         </div>
 
                         
                         <div class="form-group">
                           <label for="date">Date de livraison </label>
-                          <input type="date" class="form-control" id="date" placeholder="Date de livraison"/>
+                          <input type="date" class="form-control" id="date" placeholder="Date de livraison"  name="dateLivraison" required/>
                         </div>
 
                         <div class="form-group">
                           <label for="Heure">Heure de livraison </label>
-                          <input type="time" class="form-control" id="Heure" placeholder="Date de livraison"/>
+                          <input type="time" class="form-control" id="Heure" placeholder="Date de livraison" name="heureLivraison" required/>
                         </div>
 
                         <div class="form-group">
                           <label for="livreur">Livreur</label>
-                          <select  class="form-control" id="livreur">
-                            <option>livreur 1</option>
-                            <option>livreur 2</option>
-                            <option>livreur 3</option>
-                            <option>livreur 4</option>
-                            <option>livreur 5</option>
+                          <select  class="form-control" id="livreur" name="idLivreur" required>
+                      		<c:forEach var="index" items="${livreurs}" >
+                             	<option value="${index.id}">${index.nom}  ${index.prenom}</option>
+						    </c:forEach>
                           </select>
                         </div>
 
                         
                         <div class="form-group">
                           <label for="Transport">Transport</label>
-                          <select  class="form-control" id="Transport">
+                          <select  class="form-control" id="Transport" name="idTransport" required>
                             <option value="1" >Voiture</option>
                             <option value="2">Moto</option>
                             <option value="3">Velo</option>
@@ -71,7 +69,7 @@
 
                         <div class="form-group">
                           <label for="Prix">Prix de livraison </label>
-                          <input type="text" class="form-control" id="Prix" placeholder="Prix"/>
+                          <input type="text" class="form-control"  name="prix" id="Prix" placeholder="Prix" required/>
                         </div>
 
                         <div class="box-footer">
@@ -97,16 +95,16 @@
                           <th>Prix </th>
                           <th>Transport</th>
                         </tr>
-                        <tr>
-                          <td>1.</td>
-                          <td>Rakoto nandrasana</td>
-                          <td>
-                              03298945465
-                          </td>
-                          <td>Antananarivo</td>
-                          <td>Edit delete</td>
-                          <td>Efea</td>
-                        </tr>
+          		   		 <c:forEach var="index" items="${livraisons}" varStatus="loop">
+					        <tr>
+					            <td>${loop.index + 1}</td>
+					            <td class="text-center">${index.nom}</td>
+					            <td class="text-center">${index.prenom}</td>
+					            <td class="text-center">${index.contacte}</td>
+					            <td class="text-center">${index.adresse}</td>
+					      
+					        </tr>
+					    </c:forEach>
          
                       </table>
                     </div>

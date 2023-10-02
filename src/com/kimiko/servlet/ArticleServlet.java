@@ -74,12 +74,6 @@ public class ArticleServlet extends HttpServlet {
 	    private void listArticles(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
 	        List<Article> articles = articleDAO.getAllArticles();
-	       
-	        	
-	       /* for (Article T : articles) {
-                System.out.println( T.getArticle() );
-            }*/
-	        
 	        request.setAttribute("articles", articles);
 	        request.getRequestDispatcher("articles.jsp").forward(request, response);
 	    }
@@ -94,7 +88,7 @@ public class ArticleServlet extends HttpServlet {
 
 	    private void createArticle(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException {
-	    	 System.out.println( "---------------------------CREATE-------------------------");
+	
 	        String articleName = request.getParameter("articleName");
 	        Article newArticle = new Article(articleName);
 	        articleDAO.saveArticle(newArticle);

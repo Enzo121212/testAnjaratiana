@@ -28,7 +28,7 @@ CREATE TABLE livraison (
     idClient INT,
     idCommande INT,
     dateLivraison DATE,
-    heureLivraison TIME,
+    heureLivraison VARCHAR(255),
     idLivreur INT,
     idTransport INT,
     prix DECIMAL(10, 2)

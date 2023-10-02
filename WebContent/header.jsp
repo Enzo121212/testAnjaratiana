@@ -50,7 +50,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="livraison.jsp">
+                  <a href="Livraison">
                     <i class="fa fa-truck"></i><span> Livraison</span> 
                   </a>
                 </li>
