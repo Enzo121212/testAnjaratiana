@@ -9,4 +9,23 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>com.example.ArticleServlet</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>jsp1</servlet-name>
+    <jsp-file>/WEB-INF/View/article-list.jsp</jsp-file>
+</servlet>
+
+
+<servlet-mapping>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/List</url-pattern>
+</servlet-mapping>
+
+
+  
 </web-app>
