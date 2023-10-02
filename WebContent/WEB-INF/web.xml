@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>ArticleServlet</servlet-name>
     <servlet-class>com.example.ArticleServlet</servlet-class>
@@ -18,13 +19,22 @@
     <url-pattern>/List</url-pattern>
   </servlet-mapping>
   
-   <servlet>
+  <servlet>
     <servlet-name>ClientServlet</servlet-name>
     <servlet-class>com.kimiko.servlet.ClientsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ClientServlet</servlet-name>
     <url-pattern>/ListClient</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>LivreurServlet</servlet-name>
+    <servlet-class>com.kimiko.servlet.LivreurServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LivreurServlet</servlet-name>
+    <url-pattern>/ListLivreur</url-pattern>
   </servlet-mapping>
   
 </web-app>

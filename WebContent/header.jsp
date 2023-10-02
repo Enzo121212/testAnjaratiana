@@ -34,18 +34,18 @@
                   </a>
                 </li>
                 <li>
-                  <a href="livreur.jsp">
+                  <a href="Livreur">
                     <i class="fa fa-truck"></i><span> Livreur</span> 
                   </a>
                 </li>
                 <li>
-                  <a href="articles.jsp">
+                  <a href="articles">
                     <i class="fa fa-shopping-bag"></i><span> Articles</span> 
                   </a>
                 </li>
   
                 <li>
-                  <a href="clients.jsp">
+                  <a href="Client">
                     <i class="fa fa-address-book"></i><span> Clients</span> 
                   </a>
                 </li>

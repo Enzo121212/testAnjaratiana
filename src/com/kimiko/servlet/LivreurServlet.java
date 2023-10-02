@@ -1,6 +1,7 @@
 package com.kimiko.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,22 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kimiko.beans.Clients;
-import com.kimiko.dao.ClientDAO;
-
-import java.util.List;
+import com.kimiko.beans.Livreur;
+import com.kimiko.dao.LivreurDAO;
 
 /**
- * Servlet implementation class ClientsServlet
+ * Servlet implementation class LivreurServlet
  */
-@WebServlet(name = "Client", urlPatterns = { "/Client" })
-public class ClientsServlet extends HttpServlet {
+@WebServlet(name = "Livreur", urlPatterns = { "/Livreur" })
+public class LivreurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private ClientDAO clientDAO;
+	private LivreurDAO livreurDAO;
 
     public void init() {
-        clientDAO = new ClientDAO();
+    	livreurDAO = new LivreurDAO();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,16 +33,16 @@ public class ClientsServlet extends HttpServlet {
 
         switch (action) {
             case "list":
-                listClients(request, response);
+                listLivreur(request, response);
                 break;
             case "edit":
                 showEditForm(request, response);
                 break;
             case "delete":
-                deleteClient(request, response);
+                deleteLivreur(request, response);
                 break;
             default:
-                listClients(request, response);
+                listLivreur(request, response);
                 break;
         }
     }
@@ -52,75 +50,78 @@ public class ClientsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        System.out.println("action"+action);
         if (action == null) {
             action = "list";
         }
 
         switch (action) {
             case "create":
-                createClient(request, response);
+                createLivreur(request, response);
                 break;
             case "update":
-                updateClient(request, response);
+                updateLivreur(request, response);
                 break;
             default:
-                listClients(request, response);
+                listLivreur(request, response);
                 break;
         }
     }
 
-    private void listClients(HttpServletRequest request, HttpServletResponse response)
+    private void listLivreur(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Clients> clients = clientDAO.getAllClients();
-        request.setAttribute("clients", clients);
-        request.getRequestDispatcher("clients.jsp").forward(request, response);
+        List<Livreur> livreur = livreurDAO.getAllLivreurs();
+        request.setAttribute("livreurs", livreur);
+        request.getRequestDispatcher("livreur.jsp").forward(request, response);
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Clients existingClient = clientDAO.getClientById(id);
-        request.setAttribute("client", existingClient);
-        request.getRequestDispatcher("clients.jsp").forward(request, response);
+        Livreur existingClient = livreurDAO.getLivreurById(id);
+        request.setAttribute("livreur", existingClient);
+        request.getRequestDispatcher("livreur.jsp").forward(request, response);
     }
 
-    private void createClient(HttpServletRequest request, HttpServletResponse response)
+    private void createLivreur(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String contacte = request.getParameter("contacte");
         String adresse = request.getParameter("adresse");
-        Clients newClient = new Clients(nom, prenom, contacte, adresse);
-        clientDAO.saveClient(newClient);
-        response.sendRedirect("Client?action=list");
+        Livreur newLivreur = new Livreur(nom, prenom, contacte, adresse);
+        System.out.println("---------------------CREATE---------------");
+        System.out.println("newClient"+newLivreur);
+        livreurDAO.saveLivreur(newLivreur);
+        response.sendRedirect("Livreur?action=list");
     }
 
-    private void updateClient(HttpServletRequest request, HttpServletResponse response)
+    private void updateLivreur(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String contacte = request.getParameter("contacte");
         String adresse = request.getParameter("adresse");
-        Clients existingClient = clientDAO.getClientById(id);
-        existingClient.setNom(nom);
-        existingClient.setPrenom(prenom);
-        existingClient.setContacte(contacte);
-        existingClient.setAdresse(adresse);
-        clientDAO.updateClient(existingClient);
-        response.sendRedirect("Client?action=list");
+        Livreur existingLivreur = livreurDAO.getLivreurById(id);
+        existingLivreur.setNom(nom);
+        existingLivreur.setPrenom(prenom);
+        existingLivreur.setContacte(contacte);
+        existingLivreur.setAdresse(adresse);
+        livreurDAO.updateLivreur(existingLivreur);
+        response.sendRedirect("Livreur?action=list");
     }
 
-    private void deleteClient(HttpServletRequest request, HttpServletResponse response)
+    private void deleteLivreur(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Clients clientToDelete = clientDAO.getClientById(id);
-        clientDAO.deleteClient(clientToDelete);
-        response.sendRedirect("Client?action=list");
+        Livreur livreurToDelete = livreurDAO.getLivreurById(id);
+        livreurDAO.deleteLivreur(livreurToDelete);
+        response.sendRedirect("Livreur?action=list");
     }
 
     public void destroy() {
-        clientDAO.close();
+    	livreurDAO.close();
     }
 
 }
