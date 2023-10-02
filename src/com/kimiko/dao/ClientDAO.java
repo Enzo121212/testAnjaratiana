@@ -32,7 +32,7 @@ public class ClientDAO {
     }
 
     public List<Clients> getAllClients() {
-        return entityManager.createQuery("FROM Client", Clients.class).getResultList();
+        return entityManager.createQuery("FROM Clients", Clients.class).getResultList();
     }
 
     public void updateClient(Clients client) {
