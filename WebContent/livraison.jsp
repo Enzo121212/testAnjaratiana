@@ -1,4 +1,5 @@
 
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <%@ include file="header.jsp" %>
    <div class="content-wrapper">
             <section class="content-header">
@@ -99,7 +100,7 @@
 						<c:forEach var="livraison" items="${livraisons}" varStatus="loop">
 				            <tr>
 				                <td>${loop.index + 1}</td>
-				                 <td>${livraison.dateLivraison}</td>
+				                 <td> <fmt:formatDate value="${livraison.dateLivraison}" pattern="dd/MM/yyyy" /> </td>
 				                <td>${livraison.client.nom} ${livraison.client.prenom}</td>
 				                <td>${livraison.heureLivraison}</td>
 				                <td>${livraison.livreur.nom} ${livraison.livreur.prenom}</td>

@@ -29,7 +29,7 @@
 
               <ul class="sidebar-menu">
                 <li>
-                  <a href="dashboard.jsp">
+                  <a href="dashboardShow">
                     <i class="fa fa-dashboard"></i><span>Tableau de bord</span> 
                   </a>
                 </li>

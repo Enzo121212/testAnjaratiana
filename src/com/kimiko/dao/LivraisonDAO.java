@@ -1,8 +1,14 @@
 package com.kimiko.dao;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 
 import com.kimiko.beans.Article;
 import com.kimiko.beans.Clients;
@@ -61,6 +67,36 @@ public class LivraisonDAO {
      public Transport getTransportById(int id) {
     	 return entityManager.find(Transport.class, id);
      }
+     
+     public long getCountLivraisons() {
+    	    Long count = (Long) entityManager.createQuery("SELECT COUNT(l) FROM Livraison l")
+    	                                    .getSingleResult();
+    	    return count != null ? count : 0;
+    	}
+     
+     public long getCountLivraisonsWithCriteria() {
+    	    Session session = entityManager.unwrap(Session.class);
+    	    Criteria criteria = session.createCriteria(Livraison.class);
+    	    criteria.setProjection(Projections.rowCount());
+    	    Long count = (Long) criteria.uniqueResult();
+    	    return count != null ? count : 0;
+   }
+     
+ public long getCountLivraisonsNow() {
+	    Date now = new Date(); 
+	    Long count = (Long) entityManager.createQuery(
+	            "SELECT COUNT(l) FROM Livraison l WHERE l.dateLivraison = :now")
+	            .setParameter("now", now)
+	            .getSingleResult();
+	    return count != null ? count : 0;
+	}
+ 
+ public BigDecimal getTotalPrixLivraison() {
+	    BigDecimal totalPrix = (BigDecimal) entityManager.createQuery(
+	            "SELECT SUM(prix) FROM Livraison ")
+	            .getSingleResult();
+	    return totalPrix != null ? totalPrix : BigDecimal.ZERO;
+	}
 
 
     public void close() {

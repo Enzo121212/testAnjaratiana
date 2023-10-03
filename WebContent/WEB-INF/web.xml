@@ -33,4 +33,13 @@
     <servlet-name>LivreurServlet</servlet-name>
     <url-pattern>/ListLivreur</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>dashboard</servlet-name>
+    <servlet-class>com.kimiko.servlet.DashboardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dashboard</servlet-name>
+    <url-pattern>/dashboardShow</url-pattern>
+  </servlet-mapping>
 </web-app>

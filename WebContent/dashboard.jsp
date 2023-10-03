@@ -12,51 +12,50 @@
                 <div class="col-lg-3 col-xs-6">
                   <div class="small-box bg-aqua">
                     <div class="inner">
-                      <h3>150</h3>
+                      <h3><c:out value="${ numberLivraisonNow }"/></h3>
                       <p>Livraison du jour</p>
                     </div>
                     <div class="icon">
                       <i class="fa fa-truck"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Voir Plus <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="Livraison" class="small-box-footer">Voir Plus <i class="fa fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
                 <div class="col-lg-3 col-xs-6">
                   <div class="small-box bg-green">
                     <div class="inner">
-                      <h3>53
-                        </h3>
+                     <h3><c:out value="${ numberLivraison }"/></h3>
                       <p>Livraison effectué</p>
                     </div>
                     <div class="icon">
                       <i class="fa fa-shopping-cart"></i>
                       
                     </div>
-                    <a href="#" class="small-box-footer">Voir plus <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="Livreur" class="small-box-footer">Voir plus <i class="fa fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
                 <div class="col-lg-3 col-xs-6">
                   <div class="small-box bg-yellow">
                     <div class="inner">
-                      <h3>44</h3>
+                      <h3><c:out value="${ numberLivreur }"/></h3>
                       <p>Livreur Disponible</p>
                     </div>
                     <div class="icon">
                       <i class="	fa fa-user"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Voir plus <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="Livreur" class="small-box-footer">Voir plus <i class="fa fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
                 <div class="col-lg-3 col-xs-6">
                   <div class="small-box bg-red">
                     <div class="inner">
-                      <h3>65</h3>
+                      <h3><c:out value="${ totalPrixLivraison }"/></h3>
                       <p>Chiffre d'Affaire</p>
                     </div>
                     <div class="icon">
                       <i class="	fa fa-euro"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Voir plus <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="Livraison" class="small-box-footer">Voir plus <i class="fa fa-arrow-circle-right"></i></a>
                   </div>
                 </div>
               </div>
