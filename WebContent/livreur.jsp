@@ -36,7 +36,7 @@
 							        <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" value="${livreur.adresse}" required/>
 							    </div>
 							    <div class="box-footer">
-							        <button type="submit" class="btn btn-primary" value="${client.id == 0 ? 'Ajouter' : 'Modifier'}">${livreur.id == 0 ? 'Ajouter' : 'Modifier'}</button>
+							        <button type="submit" class="btn btn-primary" value="${client.id == null ? 'Ajouter' : 'Modifier'}">${livreur.id == null ? 'Ajouter' : 'Modifier'}</button>
 							    </div>
 							</form>
                     </div>
