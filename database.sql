@@ -45,3 +45,23 @@ INSERT INTO Transport (id, transport) VALUES
 (2, 'voiture'),
 (3, 'velo'),
 (4, 'moto');
+
+
+
+INSERT INTO articles (article) VALUES
+    ('Article 1'),
+    ('Article 2'),
+    ('Article 3');
+    
+ 
+ INSERT INTO livreur (nom, prenom, contacte, adresse) VALUES
+    ('Livreur 1', 'Prénom 1', '035456', 'Adresse 1'),
+    ('Livreur 2', 'Prénom 2', '45645612', 'Adresse 2'),
+    ('Livreur 3', 'Prénom 3', '456456456', 'Adresse 3');
+
+    
+    
+ INSERT INTO clients (nom, prenom, contacte, adresse) VALUES
+    ('Client 1', 'Prénom 1', '5645645', 'Adresse 1'),
+    ('Client 2', 'Prénom 2', '546546', 'Adresse 2'),
+    ('Client 3', 'Prénom 3', '546456', 'Adresse 3');
