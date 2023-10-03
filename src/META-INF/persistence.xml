@@ -10,10 +10,11 @@
         <class>com.kimiko.beans.Clients</class>
         <class>com.kimiko.beans.Livraison</class>
         <class>com.kimiko.beans.Livreur</class>
+        <class>com.kimiko.beans.Transport</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/livraison" />
-            <property name="javax.persistence.jdbc.user" value="sa" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/livraison;MODE=LEGACY" />
+            <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="" />
              <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
         </properties>

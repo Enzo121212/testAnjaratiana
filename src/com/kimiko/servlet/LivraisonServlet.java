@@ -2,6 +2,8 @@ package com.kimiko.servlet;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import com.kimiko.beans.Article;
 import com.kimiko.beans.Clients;
 import com.kimiko.beans.Livraison;
 import com.kimiko.beans.Livreur;
+import com.kimiko.beans.Transport;
 import com.kimiko.dao.LivraisonDAO;
 
 /**
@@ -48,6 +51,7 @@ public class LivraisonServlet extends HttpServlet {
         List<Article> articles = livraisonDAO.getAllArticles();
         request.setAttribute("articles", articles);
         
+        
         request.getRequestDispatcher("livraison.jsp").forward(request, response);
 
 	}
@@ -56,16 +60,33 @@ public class LivraisonServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*int idClient = request.getParameter("idClient");
-        int idCommande = request.getParameter("idCommande");
-        Date dateLivraison = request.getParameter("dateLivraison");
-        Date heureLivraison = request.getParameter("heureLivraison");
-		int idLivreur = request.getParameter("idLivreur");
-        int idTransport = request.getParameter("idTransport");
-        BigDecimal prix = request.getParameter("prix");
-        Livraison newlivraison = new Livraison(( idClient,  idCommande,  dateLivraison,  heureLivraison,  idLivreur,  idTransport, BigDecimal prix))
-      	livraisonDAO.saveLivraison(newlivraison);
-        response.sendRedirect("Livraison");*/
+		try {
+			
+			int idClient = Integer.parseInt(request.getParameter("idClient"));
+			Long idCommande = Long.parseLong(request.getParameter("idCommande"));
+		    Date dateLivraison = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dateLivraison"));
+		    String heureLivraison = request.getParameter("heureLivraison");
+		    int idLivreur = Integer.parseInt(request.getParameter("idLivreur"));
+		    int idTransport = Integer.parseInt(request.getParameter("idTransport"));
+		    BigDecimal prix = new BigDecimal(request.getParameter("prix"));
+
+		   
+		    Clients client = livraisonDAO.getClientById(idClient); 
+		    Article article = livraisonDAO.getArticleById(idCommande);
+		    Livreur livreur = livraisonDAO.getLivreurById(idLivreur); 
+		    Transport transport = livraisonDAO.getTransportById(idTransport); 
+
+	
+		    Livraison newLivraison = new Livraison(client, article, dateLivraison, heureLivraison, livreur, transport, prix);		   
+		    
+		    livraisonDAO.saveLivraison(newLivraison);
+		    
+		    
+		    response.sendRedirect("Livraison");
+		} catch (NumberFormatException | ParseException e) {
+
+		    e.printStackTrace(); 
+		}
 	}
 
 }

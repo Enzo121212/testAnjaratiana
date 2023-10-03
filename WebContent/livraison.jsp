@@ -15,7 +15,7 @@
                       <h3 class="box-title">Ajout Livraison</h3>
                     </div>
                     <div class="box-body">
-                      <form role="form">
+                      <form action="Livraison" method="post">
                         
                         <div class="form-group">
                           <label for="client">Select</label>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="article"> S�lectionnez un ou plusieurs articles</label>
+                          <label for="article"> Selectionnez un ou plusieurs articles</label>
                           <select multiple class="form-control" id="article" name="idCommande" required>
                             <c:forEach var="index" items="${articles}" >
                              	<option value="${index.id}">${index.article}</option>
@@ -39,17 +39,17 @@
                         
                         <div class="form-group">
                           <label for="date">Date de livraison </label>
-                          <input type="date" class="form-control" id="date" placeholder="Date de livraison"  name="dateLivraison" required/>
+                          <input type="date" class="form-control" id="date" placeholder="Date de livraison"  name="dateLivraison" required />
                         </div>
 
                         <div class="form-group">
                           <label for="Heure">Heure de livraison </label>
-                          <input type="time" class="form-control" id="Heure" placeholder="Date de livraison" name="heureLivraison" required/>
+                          <input type="time" class="form-control" id="Heure" placeholder="Date de livraison" name="heureLivraison"  required/>
                         </div>
 
                         <div class="form-group">
                           <label for="livreur">Livreur</label>
-                          <select  class="form-control" id="livreur" name="idLivreur" required>
+                          <select  class="form-control" id="livreur" name="idLivreur" required >
                       		<c:forEach var="index" items="${livreurs}" >
                              	<option value="${index.id}">${index.nom}  ${index.prenom}</option>
 						    </c:forEach>
@@ -69,7 +69,7 @@
 
                         <div class="form-group">
                           <label for="Prix">Prix de livraison </label>
-                          <input type="text" class="form-control"  name="prix" id="Prix" placeholder="Prix" required/>
+                          <input type="number" class="form-control"  name="prix" id="Prix" placeholder="Prix" required/>
                         </div>
 
                         <div class="box-footer">
@@ -92,20 +92,21 @@
                           <th>Date Livraison</th>
                           <th>Clients</th>
                           <th>Heures</th>
-                          <th>Prix </th>
+                          <th>Livreur</th>
                           <th>Transport</th>
+                          <th>Prix </th>
                         </tr>
-          		   		 <c:forEach var="index" items="${livraisons}" varStatus="loop">
-					        <tr>
-					            <td>${loop.index + 1}</td>
-					            <td class="text-center">${index.nom}</td>
-					            <td class="text-center">${index.prenom}</td>
-					            <td class="text-center">${index.contacte}</td>
-					            <td class="text-center">${index.adresse}</td>
-					      
-					        </tr>
-					    </c:forEach>
-         
+						<c:forEach var="livraison" items="${livraisons}" varStatus="loop">
+				            <tr>
+				                <td>${loop.index + 1}</td>
+				                 <td>${livraison.dateLivraison}</td>
+				                <td>${livraison.client.nom} ${livraison.client.prenom}</td>
+				                <td>${livraison.heureLivraison}</td>
+				                <td>${livraison.livreur.nom} ${livraison.livreur.prenom}</td>
+				                <td>${livraison.transport.transport}</td>
+				                <td>${livraison.prix}</td>
+				            </tr>
+				        </c:forEach>
                       </table>
                     </div>
                   </div>

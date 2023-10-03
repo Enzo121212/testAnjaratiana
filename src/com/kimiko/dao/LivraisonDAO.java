@@ -8,6 +8,7 @@ import com.kimiko.beans.Article;
 import com.kimiko.beans.Clients;
 import com.kimiko.beans.Livraison;
 import com.kimiko.beans.Livreur;
+import com.kimiko.beans.Transport;
 import com.kimiko.util.EntityManagerUtil;
 
 
@@ -37,15 +38,29 @@ public class LivraisonDAO {
     public List<Article> getAllArticles() {
         return entityManager.createQuery("FROM Article", Article.class).getResultList();
     }
+    
+    public Article getArticleById(Long id) {
+        return entityManager.find(Article.class, id);
+    }
 
     public List<Clients> getAllClients() {
         return entityManager.createQuery("FROM Clients", Clients.class).getResultList();
     }
+    
+    public Clients getClientById(int id) {
+        return entityManager.find(Clients.class, id);
+    }
 
-        public List<Livreur> getAllLivreurs() {
+     public List<Livreur> getAllLivreurs() {
         return entityManager.createQuery("FROM Livreur", Livreur.class).getResultList();
     }
 
+     public Livreur getLivreurById(int id) {
+         return entityManager.find(Livreur.class, id);
+     }
+     public Transport getTransportById(int id) {
+    	 return entityManager.find(Transport.class, id);
+     }
 
 
     public void close() {

@@ -13,45 +13,49 @@ public class Livraison {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "idClient")
-    private int idClient;
+    @ManyToOne
+    @JoinColumn(name="idClient", nullable=false)
+    private Clients client;
 
-    @Column(name = "idCommande")
-    private int idCommande;
+    @ManyToOne
+    @JoinColumn(name="idCommande", nullable=false)
+    private Article article;
 
     @Column(name = "dateLivraison")
     @Temporal(TemporalType.DATE)
     private Date dateLivraison;
 
     @Column(name = "heureLivraison")
-    @Temporal(TemporalType.TIME)
-    private Date heureLivraison;
+    private String heureLivraison;
 
-    @Column(name = "idLivreur")
-    private int idLivreur;
+    
+    @ManyToOne
+    @JoinColumn(name="idLivreur", nullable=false)
+    private Livreur livreur;
 
-    @Column(name = "idTransport")
-    private int idTransport;
+
+    @ManyToOne
+    @JoinColumn(name="idTransport", nullable=false)
+    private Transport transport;
 
     @Column(name = "prix", precision = 10, scale = 2)
     private BigDecimal prix;
 
- 
-
-    public Livraison() {
-    }
-
-    public Livraison(int idClient, int idCommande, Date dateLivraison, Date heureLivraison, int idLivreur, int idTransport, BigDecimal prix) {
-        this.idClient = idClient;
-        this.idCommande = idCommande;
+    public Livraison(Clients client, Article article, Date dateLivraison, String heureLivraison, Livreur livreur, Transport transport, BigDecimal prix) {
+        this.client = client;
+        this.article = article;
         this.dateLivraison = dateLivraison;
         this.heureLivraison = heureLivraison;
-        this.idLivreur = idLivreur;
-        this.idTransport = idTransport;
+        this.livreur = livreur;
+        this.transport = transport;
         this.prix = prix;
     }
+    
+    public Livraison() {
+  
+    }
 
-   
+
 
     public int getId() {
 		return id;
@@ -61,20 +65,20 @@ public class Livraison {
 		this.id = id;
 	}
 
-	public int getIdClient() {
-		return idClient;
+	public Clients getClient() {
+		return client;
 	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setClient(Clients client) {
+		this.client = client;
 	}
 
-	public int getIdCommande() {
-		return idCommande;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setIdCommande(int idCommande) {
-		this.idCommande = idCommande;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	public Date getDateLivraison() {
@@ -85,28 +89,28 @@ public class Livraison {
 		this.dateLivraison = dateLivraison;
 	}
 
-	public Date getHeureLivraison() {
+	public String getHeureLivraison() {
 		return heureLivraison;
 	}
 
-	public void setHeureLivraison(Date heureLivraison) {
+	public void setHeureLivraison(String heureLivraison) {
 		this.heureLivraison = heureLivraison;
 	}
 
-	public int getIdLivreur() {
-		return idLivreur;
+	public Livreur getLivreur() {
+		return livreur;
 	}
 
-	public void setIdLivreur(int idLivreur) {
-		this.idLivreur = idLivreur;
+	public void setLivreur(Livreur livreur) {
+		this.livreur = livreur;
 	}
 
-	public int getIdTransport() {
-		return idTransport;
+	public Transport getTransport() {
+		return transport;
 	}
 
-	public void setIdTransport(int idTransport) {
-		this.idTransport = idTransport;
+	public void setTransport(Transport transport) {
+		this.transport = transport;
 	}
 
 	public BigDecimal getPrix() {
@@ -119,7 +123,9 @@ public class Livraison {
 
 	@Override
     public String toString() {
-        return "Livraison [id=" + id + ", idClient=" + idClient + ", idCommande=" + idCommande + ", dateLivraison=" + dateLivraison
-                + ", heureLivraison=" + heureLivraison + ", idLivreur=" + idLivreur + ", idTransport=" + idTransport + ", prix=" + prix + "]";
+        return "Livraison [id=" + id + ", client=" + client + ", article=" + article + ", dateLivraison=" + dateLivraison
+                + ", heureLivraison=" + heureLivraison + ", livreur=" + livreur + ", transport=" + transport + ", prix=" + prix + "]";
     }
+
+
 }
